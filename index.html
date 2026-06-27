@@ -245,8 +245,9 @@ function setTab(tab){
  sysmsg.textContent=MSGS[tab]||MSGS.quests;
 }
 document.addEventListener('click',function(e){
- var t=e.target.closest('[data-tab]'); if(!t)return;
- if(t.tagName==='A')return; e.preventDefault(); setTab(t.dataset.tab);
+ if(e.target.closest('a[href]'))return;            /* let real links work */
+ var t=e.target.closest('.mbtn,.gbtn[data-tab],[data-tab].lbl-mut');
+ if(!t)return; e.preventDefault(); setTab(t.dataset.tab);
 });
 function fillBars(){document.querySelectorAll('.bar[data-w] > i').forEach(function(i){i.style.width=i.parentElement.dataset.w+'%';});}
 function fit(){
